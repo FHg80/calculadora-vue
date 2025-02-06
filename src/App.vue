@@ -21,18 +21,14 @@
 
     switch(op) {
       case 'soma':
-        estado.resultado = a + b;
-        break;
+        return estado.resultado = a + b;
       case 'subtracao':
-        estado.resultado = a - b;
-        break;
+        return estado.resultado = a - b;
       case 'multiplicacao':
-        estado.resultado = a * b;
-        break;
+        return estado.resultado = a * b;
       case 'divisao' :
         if(b != 0) {
-          estado.resultado = a / b;
-          break;
+          return estado.resultado = a / b;
         } else {
           alert("Impossível dividir por 0, digite outro número.")
         }
@@ -68,10 +64,7 @@
       </div>
     </div>
     <div class="row text-center mt-3">
-      <div class="col">
-        <button type="submit" class="btn btn-primary mb-2">Calcular</button>
-      </div>
-      <p>Resultado: {{ estado.resultado }}</p>
+      <p>Resultado: {{ calcula() }}</p>
     </div>
   </form>
 </template>
@@ -81,6 +74,13 @@
   .selected {
     background-color: orange;
     border-color: orange;
+    
+  }
+
+  .selected:hover {
+    background-color: orange;
+    border-color: orange;
+    
   }
 
 </style>
