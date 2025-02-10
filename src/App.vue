@@ -5,12 +5,13 @@
   const estado = reactive({
     numeroA: 0,
     numeroB: 0,
-    operacao: '',
+    operacao: 'soma',
     resultado: 0
   })
 
-  const trocaOperacao = (operacao) => {
-    estado.operacao = operacao;
+  const trocaOperacao = (e) => {
+    estado.operacao = e.target.value;
+    console.log(estado.operacao);
   }
 
   const calcula = () => {
@@ -47,20 +48,22 @@
   <form @submit.prevent="calcula()">
     <div class="row mb-2">
       <div class="col text-center">
-        <input @change="e => estado.numeroA = Number(e.target.value)" class="col-md-2" type="number" placeholder="Digite um número">
+        <input @keyup="e => estado.numeroA = Number(e.target.value)" class="col-md-2" type="number" placeholder="Digite um número">
       </div>
     </div>
     <div class="row mb-2">
-      <div class="col text-center">
-        <button :class="{selected: estado.operacao === 'soma' }" @click="() => trocaOperacao('soma')" type="button" value="soma" class="btn btn-primary me-2">+</button>
-        <button :class="{selected: estado.operacao === 'subtracao' }" @click="() => trocaOperacao('subtracao')" type="button" value="subtracao" class="btn btn-primary me-2">-</button>
-        <button :class="{selected: estado.operacao === 'multiplicacao' }" @click="() => trocaOperacao('multiplicacao')" type="button" value="multiplicacao" class="btn btn-primary me-2">*</button>
-        <button :class="{selected: estado.operacao === 'divisao' }" @click="() => trocaOperacao('divisao')" type="button" value="divisao" class="btn btn-primary me-2">/</button>
+      <div class="col-md-2 mx-auto">
+        <select class="form-control" @change="trocaOperacao">
+          <option value="soma">Soma</option>
+          <option value="subtracao">Subtração</option>
+          <option value="multiplicacao">Multiplicação</option>
+          <option value="divisao">Divisão</option>
+        </select>
       </div>
     </div>
     <div class="row">
       <div class="col text-center">
-        <input @change="e => estado.numeroB = Number(e.target.value)" class="col-md-2" type="number" placeholder="Digite outro número">
+        <input @keyup="e => estado.numeroB = Number(e.target.value)" class="col-md-2" type="number" placeholder="Digite outro número">
       </div>
     </div>
     <div class="row text-center mt-3">
